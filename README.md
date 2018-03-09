@@ -100,7 +100,7 @@ uwsgi uwsgiconfig.ini
 ##TODO
 - [x] 文件上传
 - [ ] 邮件通知
-- [ ] 取件二维码
+- [x] 取件码
 
 ## 许可
 The MIT License (MIT). 详情见 __License文件__
