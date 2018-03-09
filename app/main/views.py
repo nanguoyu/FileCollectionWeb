@@ -3,12 +3,14 @@ from datetime import datetime
 from flask import url_for, redirect, session, render_template, request, jsonify
 import logging
 import time
+from mdb import ActivationCodeProducer
 from . import main
 from flask_qiniu import Qiniu
 
 logging.basicConfig(filename=time.strftime("%Y-%m-%d", time.localtime()) + 'fileshare.log', level=logging.DEBUG)
 logging.info(time.strftime("%Y-%m-%d %H:%M:%S ", time.localtime()) + 'file upload  start')
 qiniu_store = Qiniu()
+activation_code_producer = ActivationCodeProducer()
 
 
 @main.route('/', methods=['GET', 'POST'])
@@ -32,11 +34,12 @@ def index():
 @main.route('/save', methods=['GET', 'POST'])
 def save():
     data = request.files['kartik-input-700']
-    filename = data.filename
+    code = activation_code_producer.activation_code(6)
+    filename = code + '_' + data.filename
     ret, info = qiniu_store.save(data, filename)
+    logging.info(time.strftime("%Y-%m-%d %H:%M:%S ", time.localtime()) + "save" + filename)
     logging.info(time.strftime("%Y-%m-%d %H:%M:%S ", time.localtime()) + str(ret) + ' ' + str(info))
-    return jsonify('upload success')
-
+    return jsonify(code)
 
 # class log_on_form(Form):
 #     uid = StringField(U'帐号', validators=[DataRequired()])

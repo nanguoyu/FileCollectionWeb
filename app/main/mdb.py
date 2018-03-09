@@ -6,6 +6,8 @@ from dbconnect.dbmanage import db_manage
 import json
 import logging
 import time
+import random
+import string
 
 logging.basicConfig(filename=time.strftime("%Y-%m-%d", time.localtime()) + 'easkongadmin_database.log',
                     level=logging.DEBUG)
@@ -60,3 +62,22 @@ class ComplexEncoder(json.JSONEncoder):
             return obj.strftime('%Y-%m-%d')
         else:
             return json.JSONEncoder.default(self, obj)
+
+
+class ActivationCodeProducer:
+    def __init__(self):
+        self.count = 20
+
+    def activation_code(self, length=10):
+        """
+        id + L + 随机码
+        string模块中的3个函数：string.letters，string.printable，string.printable
+        """
+        if self.count >= 1201:
+            self.count = self.count - 1000
+        self.count = self.count + 1
+        prefix = hex(int(self.count))[2:] + 'L'
+        length = length - len(prefix)
+        chars = string.ascii_letters + string.digits
+        return prefix + ''.join([random.choice(chars) for i in range(length)])
+
