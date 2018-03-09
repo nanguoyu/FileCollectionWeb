@@ -1,0 +1,106 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %}9号公寓在线打印业务{% endblock %}
+
+{% block head %}
+{{ super() }}
+    <meta charset="UTF-8">
+    <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- 可选的Bootstrap主题文件（一般不使用） -->
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap-theme.min.css"></script>
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link href="http://nanguoyublog.qiniudn.com/fileinput.min.css" rel="stylesheet" />
+
+    <script src="http://nanguoyublog.qiniudn.com/fileinput.min.js"></script>
+    <script src="http://nanguoyublog.qiniudn.com/fileinput_locale_zh.js"></script>
+
+    <title>9号公寓打印店系统</title>
+
+{% endblock %}
+
+{% block navbar %}
+{% endblock %}
+
+{% block content %}
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <!--<img src="http://nanguoyublog.qiniudn.com/easkonglogo.png" class="img-responsive"  alt="Cinque Terre">-->
+            <h1>9号公寓黑心老板开的打印店</h1>
+            <p></p>
+            <div class="row clearfix">
+                <div class="col-md-4 column">
+                    <div class="jumbotron">
+                        <h3>
+                            9号公寓 打印店24*7小时营业!无需登录在线上传！
+                        </h3>
+                        <p>
+                            本店提供：打印、复印、扫描服务！支持支付宝、微信、京东支付、Paypal等支付渠道。并强势推出在线打印服务！
+                        </p>
+                        <p>
+                            <a class="btn btn-success btn-large" href="#">获取更多</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-8 column">
+                    <div class="alert alert-dismissable alert-success">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4>
+                            注意!
+                        </h4> <strong>客官老爷</strong> 为了更好为您提供服务，请上传PDF<a href="#" class="alert-link">查看详情</a>
+                    </div>
+                        <input id="input-700" name="kartik-input-700" type="file" multiple class="file-loading">
+                    <script>
+                        $("#input-700").fileinput({
+                            uploadUrl: "{{ url_for("main.save") }}", // 服务器端上传处理程序
+                            uploadAsync: true,  //异步上传
+                            maxFileCount: 5  ,   //最大上传文件数为5
+
+                            language: 'zh', //设置语言
+
+                            allowedFileExtensions: ['jpg', 'pdf', 'png'],//接收的文件后缀
+                            showUpload: true, //是否显示上传按钮
+                            showCaption: false,//是否显示标题
+                            browseClass: "btn btn-primary", //按钮样式
+                            //dropZoneEnabled: false,//是否显示拖拽区域
+                            //minImageWidth: 50, //图片的最小宽度
+                            //minImageHeight: 50,//图片的最小高度
+                            //maxImageWidth: 1000,//图片的最大宽度
+                            //maxImageHeight: 1000,//图片的最大高度
+                            //maxFileSize: 0,//单位为kb，如果为0表示不限制文件大小
+                            //minFileCount: 0,
+
+                            enctype: 'multipart/form-data',
+                            validateInitialCount: true,
+                            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+                            msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！"
+
+                        })
+{#                            .on("fileuploaded", function (event, data, previewId, index) {#}
+{#     #}
+{#                            })#}
+                        ;
+
+                    </script>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+    <div id="footer" style="border-top: 1px solid #eee;padding: 10px;">
+        <div style="text-align: center;color: #696969;">版权所有 © 2014-2018 保留所有权利。公司地址：</div>
+        <div style="text-align: center;color: #696969;">联系我们:<a href="mailto:">邮件</a>|<a href="http://">官网</a></div>
+    </div>
+
+
+{% endblock %}
