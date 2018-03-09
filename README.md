@@ -97,6 +97,5 @@ uwsgi uwsgiconfig.ini
 - [ ] 邮件通知
 - [ ] 取件二维码
 
-
 ## 许可
 The MIT License (MIT). 详情见 __License文件__
