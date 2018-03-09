@@ -6,7 +6,7 @@ upload file to qiniu form web.
 ```
 这是一个轻量级文件收集程序，旨在提供免登陆文件收集服务
 ```
-Demo: http://file.nanguoyu.us
+Demo: 
 
 
 ## 部署
