@@ -18,7 +18,7 @@ web由Flask、UWSGI、Nginx实现，请自行查阅，等俺病好了再更新�
 
 ```
 ##示例
-###uwsgiconfig.ini：
+uwsgiconfig.ini：
 ```
 [uwsgi]
 
@@ -44,7 +44,7 @@ threads = 2
 stats = 127.0.0.1:9200
 ```
 
-###yourdomina.conf:
+yourdomina.conf:
 ```
 server
     {
@@ -76,7 +76,7 @@ server
     }
 ```
 
-###七牛配置
+七牛配置
 ```
         self._access_key = '七牛 Access Key'
         self._secret_key = '七牛 Secret Key'
@@ -93,9 +93,9 @@ uwsgi uwsgiconfig.ini
 ```
 
 ##TODO
-    - [x] 文件上传
-    - [ ] 邮件通知
-    - [ ] 取件二维码
+- [x] 文件上传
+- [ ] 邮件通知
+- [ ] 取件二维码
 
 
 ## 许可
