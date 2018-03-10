@@ -66,17 +66,17 @@ class ComplexEncoder(json.JSONEncoder):
 
 class ActivationCodeProducer:
     def __init__(self):
-        self.count = 20
+        self._count = 20
 
     def activation_code(self, length=10):
         """
         id + L + 随机码
         string模块中的3个函数：string.letters，string.printable，string.printable
         """
-        if self.count >= 1201:
-            self.count = self.count - 1000
-        self.count = self.count + 1
-        prefix = hex(int(self.count))[2:] + 'L'
+        if self._count >= 1201:
+            self._count = self._count - 1000
+        self._count = self._count + 1
+        prefix = hex(int(self._count))[2:] + 'L'
         length = length - len(prefix)
         chars = string.ascii_letters + string.digits
         return prefix + ''.join([random.choice(chars) for i in range(length)])
